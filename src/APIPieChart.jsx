@@ -5,6 +5,7 @@ import {
   ResponsiveContainer,
   Legend,
   Tooltip,
+  Label,
 } from "recharts";
 
 export function APIPieChart({ data = [] }) {
@@ -35,6 +36,7 @@ export function APIPieChart({ data = [] }) {
             data={data}
             cx="50%"
             cy="50%"
+            innerRadius="40%" // 👈 this makes it donut
             outerRadius="70%"
             dataKey="value"
             label={({ name, percent }) =>
@@ -46,6 +48,7 @@ export function APIPieChart({ data = [] }) {
             {data.map((entry) => (
               <Cell key={`cell-${entry.name}`} fill={entry.color} />
             ))}
+            <Label value={`Total: ${total}`} position="center" fill="#fff" />
           </Pie>
 
           <Tooltip
